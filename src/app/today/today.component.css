@@ -1,0 +1,16 @@
+table {
+    border: 1px solid black;
+    margin-top: 20px;
+    height: 300px;
+    width: 700px;
+    margin-left: 200px;
+  }
+
+  .container {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  agm-map {
+    height: 500px;
+  }
