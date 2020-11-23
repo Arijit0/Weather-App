@@ -2,59 +2,65 @@
 
 <div class="container">
 
-  <div class="input-group">
-    <input type="text" class="form-control" #userInput  placeholder="Enter your City name">
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="submit" (click)="getCity(userInput.value)">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
+    <div class="input-group">
+      <input type="text" class="form-control" #userInput  placeholder="Enter your City name">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="getCity(userInput.value)">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
     </div>
-  </div>
-    
-    <h4>Weather in {{weather.name}},{{weather.sys.country}}</h4>            
-    
-    <div class="col-sm-12">
-      <span>
-        <img src="assets/{{weather.weather[0].icon}}.png" alt="01d.png">
-        {{weather.main.temp}} &#176;F
-      </span>
-      <p class="text-uppercase font-italic font-weight-bold">
-        {{weather.weather[0].description}}
-      </p>
-    </div>
-    
-    
-    <table class="table table-striped">
-     
-      <tbody>
-       
-        <tr>
-            <td>Pressure</td>
-            <td>{{weather.main.pressure}} hpa</td>
-          </tr>
-          <tr>
-            <td>Humidity</td>
-            <td>{{weather.main.humidity}}%</td>
-          </tr>
-          <tr>
-            <td>Sunrise</td>
-            <td>{{weather.sys.sunrise * 1000 | date:'H:mm'}}</td>
-          </tr>
-          <tr>
-            <td>Sunset</td> 
-            <td>{{weather.sys.sunset * 1000 | date:'H:mm'}}</td>
-          </tr>
-          <tr>
-            <td>Geo coords</td> 
-            <td>[{{weather.coord.lat}},{{weather.coord.lon}}]</td>
-          </tr>
-        
-      </tbody>
-    </table>
 
-    <agm-map [latitude]="lat" [longitude]="lon">
-      <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
-    </agm-map>
+    <h3 class="mt-4" *ngIf="!isSearched">
+      {{message}}
+    </h3>
+      
+    <div *ngIf="isSearched">
+      <h4>Weather in {{message.name}},{{message.sys.country}}</h4>            
+      
+      <div class="col-sm-12">
+        <span>
+          <img src="assets/{{message.weather[0].icon}}.png" alt="01d.png">
+          {{message.main.temp}} &#176;F
+        </span>
+        <p class="text-uppercase font-italic font-weight-bold">
+          {{message.weather[0].description}}
+        </p>
+      </div>
+      
+      
+      <table class="table table-striped">
+      
+        <tbody>
+        
+          <tr>
+              <td>Pressure</td>
+              <td>{{message.main.pressure}} hpa</td>
+            </tr>
+            <tr>
+              <td>Humidity</td>
+              <td>{{message.main.humidity}}%</td>
+            </tr>
+            <tr>
+              <td>Sunrise</td>
+              <td>{{message.sys.sunrise * 1000 | date:'H:mm'}}</td>
+            </tr>
+            <tr>
+              <td>Sunset</td> 
+              <td>{{message.sys.sunset * 1000 | date:'H:mm'}}</td>
+            </tr>
+            <tr>
+              <td>Geo coords</td> 
+              <td>[{{message.coord.lat}},{{message.coord.lon}}]</td>
+            </tr>
+          
+        </tbody>
+      </table>
+
+      <agm-map [latitude]="lat" [longitude]="lon">
+        <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+      </agm-map>
+    </div>
 
  
     </div>
